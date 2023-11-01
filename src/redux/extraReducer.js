@@ -167,6 +167,19 @@ export const deleteFiles = createAsyncThunk("Delete", async (payload) => {
     console.error("Error deleting file or document:", error);
   }
 });
+export const changeUserProfile = createAsyncThunk(
+  "user/changeProfile",
+  async (data, { rejectWithValue }) => {
+    console.log(data);
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: data.username,
+      });
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const initialState = {
   error: null,
@@ -245,6 +258,16 @@ const filesSlice = createSlice({
         state.postLoading = false;
       })
       .addCase(deleteFiles.rejected, (state, action) => {
+        state.error = action.error.message;
+      });
+    builder
+      .addCase(changeUserProfile.pending, (state, action) => {
+        state.postLoading = true;
+      })
+      .addCase(changeUserProfile.fulfilled, (state, action) => {
+        state.postLoading = false;
+      })
+      .addCase(changeUserProfile.rejected, (state, action) => {
         state.error = action.error.message;
       });
   },

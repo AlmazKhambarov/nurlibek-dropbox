@@ -12,6 +12,7 @@ import UploadFIleModal from "./Layout/Modals/UploadFIleModal";
 import { Route, Routes } from "react-router-dom";
 import Folder from "./Layout/Folder/Folder";
 import { auth } from "./api/firebase";
+import UserPage from "./Layout/UserPage/UserPage";
 
 function App() {
   // const [user, setUser] = useState(true);
@@ -31,6 +32,7 @@ function App() {
         <Route path='/' element={user ? <Home /> : <Login />} />
         <Route path='/register' element={user ? <Home /> : <Register />} />
         <Route path='/home' element={user ? <Home /> : <Login />} />
+        <Route path='/home/user/:id' element={user ? <UserPage /> : <Login />} />
         <Route
           path='/home/folder/:id'
           element={user ? <Folder /> : <Login />}

@@ -41,3 +41,8 @@ nav .dropdown-menu li {
   align-items: center;
   cursor: pointer;
 }
+ul a{
+  color :aliceblue;
+  cursor: pointer;
+  text-decoration: none;
+}

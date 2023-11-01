@@ -30,9 +30,12 @@ function Navbar() {
         </div>
         <ul className={`dropdown-menu ${dropdownVisible ? "active" : ""}`}>
           <li>{user?.email}</li>
-          <li>
-            Settings <FontAwesomeIcon icon={faGear} />{" "}
-          </li>
+          <a href={`/home/user/${user?.uid}`}>
+            <li>
+              Settings <FontAwesomeIcon icon={faGear} />{" "}
+            </li>
+          </a>
+
           <li onClick={() => dispatch(UserLogout())}>
             Sign out <FontAwesomeIcon icon={faSignOut} />
           </li>
