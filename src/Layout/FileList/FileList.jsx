@@ -10,6 +10,7 @@ import {
   faFolder,
   faTrash,
   faEllipsis,
+  faCopy,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -25,8 +26,20 @@ function FileList({ filesD, foldersD }) {
     }
     setVisibleDropdown(id);
   };
+  const [link, setLink] = useState("https://example.com");
+  const [copySuccess, setCopySuccess] = useState(false);
   const dispatch = useDispatch();
-
+  const copyToClipboard = async (link) => {
+    try {
+      await navigator.clipboard.writeText(link);
+      setCopySuccess(true);
+      alert("Succsesfuly copiyed");
+    } catch (err) {
+      console.error("Failed to copy link: ", err);
+      setCopySuccess(false);
+    }
+  };
+  console.log(copySuccess);
   return (
     <div className='fileTable'>
       <table class='table'>
@@ -59,7 +72,11 @@ function FileList({ filesD, foldersD }) {
                     <FontAwesomeIcon icon={faDownload} /> Download
                   </a>
                   <span>
-                    <FontAwesomeIcon icon={faEye} /> Show
+                    <FontAwesomeIcon
+                      icon={faCopy}
+                      onClick={() => copyToClipboard(el?.url)}
+                    />{" "}
+                    Copy Link
                   </span>
                   <span>
                     <FontAwesomeIcon
