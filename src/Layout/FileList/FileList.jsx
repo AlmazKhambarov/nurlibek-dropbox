@@ -71,21 +71,14 @@ function FileList({ filesD, foldersD }) {
                   <a href={el?.url}>
                     <FontAwesomeIcon icon={faDownload} /> Download
                   </a>
-                  <span>
-                    <FontAwesomeIcon
-                      icon={faCopy}
-                      onClick={() => copyToClipboard(el?.url)}
-                    />{" "}
-                    Copy Link
+                  <span onClick={() => copyToClipboard(el?.url)}>
+                    <FontAwesomeIcon icon={faCopy} /> Copy Link
                   </span>
-                  <span>
-                    <FontAwesomeIcon
-                      icon={faTrash}
-                      onClick={() =>
-                        dispatch(deleteFiles({ name: el.name, id: el.id }))
-                      }
-                    />{" "}
-                    Delete
+                  <span
+                    onClick={() =>
+                      dispatch(deleteFiles({ name: el.name, id: el.id }))
+                    }>
+                    <FontAwesomeIcon icon={faTrash} /> Delete
                   </span>
                 </div>
               </td>
