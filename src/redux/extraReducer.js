@@ -170,7 +170,7 @@ export const deleteFiles = createAsyncThunk("Delete", async (payload) => {
 export const changeUserProfile = createAsyncThunk(
   "user/changeProfile",
   async (data, { rejectWithValue }) => {
-    console.log(data);
+
     try {
       await updateProfile(auth.currentUser, {
         displayName: data.username,
